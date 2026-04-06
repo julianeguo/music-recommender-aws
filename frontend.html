@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Spotify Recommender</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Spotify Song Recommender</h1>
+
+<div class="search-area">
+
+<input id="songInput" placeholder="Start typing a song...">
+
+<div id="autocomplete" class="autocomplete-list"></div>
+
+<br>
+
+<button onclick="getRecommendations()">Get Recommendations</button>
+
+<p id="message"></p>
+
+</div>
+
+<div id="results"></div>
+
+<!-- Albums section -->
+<div id="albums-section" style="display:none;">
+  <h2 id="albums-title"></h2>
+  <div id="albums"></div>
+</div>
+
+<script>
+
+/* SONG DATABASE (same 16 songs from your SQL) */
+
+const songs = [
+
+{song:"LALA", artist:"Myke Towers"},
+{song:"vampire", artist:"Olivia Rodrigo"},
+{song:"Cruel Summer", artist:"Taylor Swift"},
+{song:"WHERE SHE GOES", artist:"Bad Bunny"},
+{song:"fukumean", artist:"Gunna"},
+{song:"Super Shy", artist:"NewJeans"},
+{song:"Flowers", artist:"Miley Cyrus"},
+{song:"Daylight", artist:"David Kushner"},
+{song:"As It Was", artist:"Harry Styles"},
+{song:"Kill Bill", artist:"SZA"},
+{song:"Like Crazy", artist:"Jimin"},
+{song:"Last Night", artist:"Morgan Wallen"},
+{song:"Rush", artist:"Troye Sivan"},
+{song:"Anti-Hero", artist:"Taylor Swift"},
+{song:"TQM", artist:"Fuerza Regida"},
+{song:"People", artist:"Libianca"}
+
+]
+
+const input = document.getElementById("songInput")
+const list = document.getElementById("autocomplete")
+
+/* AUTOCOMPLETE */
+
+input.addEventListener("input", function(){
+
+const value = this.value.toLowerCase()
+list.innerHTML=""
+
+if(value.length === 0) return
+
+const matches = songs.filter(s =>
+s.song.toLowerCase().includes(value)
+)
+
+if(matches.length === 0){
+
+list.innerHTML =
+"<div class='autocomplete-item'>No matching songs in our database</div>"
+
+return
+}
+
+matches.forEach(song => {
+
+const item = document.createElement("div")
+item.className="autocomplete-item"
+
+item.textContent = song.song + " — " + song.artist
+
+item.onclick = function(){
+
+input.value = song.song
+input.dataset.artist = song.artist
+list.innerHTML=""
+
+}
+
+list.appendChild(item)
+
+})
+
+})
+
+/* FETCH RECOMMENDATIONS */
+
+async function getRecommendations(){
+
+const song = input.value
+const artist = input.dataset.artist
+
+const message = document.getElementById("message")
+const results = document.getElementById("results")
+const albumsSection = document.getElementById("albums-section")
+const albumsContainer = document.getElementById("albums")
+const albumsTitle = document.getElementById("albums-title")
+
+results.innerHTML=""
+albumsSection.style.display = "none"
+albumsContainer.innerHTML=""
+message.innerHTML="Loading recommendations..."
+
+if(!artist){
+
+message.innerHTML =
+"Please choose a song from the autocomplete list."
+
+return
+}
+
+const endpoint =
+"https://9zuob5am77.execute-api.us-east-2.amazonaws.com/prod/recommend/" 
++ encodeURIComponent(song) 
++ "/" + encodeURIComponent(artist)
+
+try{
+
+const response = await fetch(endpoint)
+const data = await response.json()
+
+/* RENDER SONG RECOMMENDATIONS */
+
+message.innerHTML="Recommended Songs"
+
+data.songrec_info.forEach(song => {
+
+const card = document.createElement("div")
+card.className="song-card"
+
+card.innerHTML = `
+<img src="${song.album_art}">
+<h3>${song.songname}</h3>
+<p>${song.artistname}</p>
+<a href="${song.spotify_url}" target="_blank">Open in Spotify</a>
+`
+
+results.appendChild(card)
+
+})
+
+/* RENDER ALBUMS */
+
+if(data.albums && data.albums.length > 0){
+
+  albumsSection.style.display = "block"
+  albumsTitle.innerHTML = "More from " + artist
+
+  data.albums.forEach(album => {
+
+    const card = document.createElement("div")
+    card.className="song-card"
+
+    card.innerHTML = `
+    <img src="${album.album_art}">
+    <h3>${album.albumname}</h3>
+    <p>${album.release_date}</p>
+    <a href="${album.spotify_url}" target="_blank">Open in Spotify</a>
+    `
+
+    albumsContainer.appendChild(card)
+
+  })
+
+}
+
+}
+catch(err){
+
+message.innerHTML="Error getting recommendations"
+console.log("Error:", err)
+
+}
+
+}
+
+</script>
+
+</div>
+
+</body>
+</html>

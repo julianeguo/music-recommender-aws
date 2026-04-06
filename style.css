@@ -1,0 +1,100 @@
+body{
+    margin:0;
+    font-family:Arial;
+    background:#121212;
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    padding-top:120px;
+}
+
+/* main container */
+
+.container{
+    text-align:center;
+    width:900px;
+}
+
+/* title */
+
+h1{
+    font-size:48px;
+    margin-bottom:40px;
+}
+
+/* search area */
+
+.search-area{
+    text-align:center;
+    padding:40px;
+}
+
+input{
+    padding:12px;
+    width:250px;
+    margin:5px;
+    border-radius:6px;
+    border:none;
+}
+
+button{
+    padding:12px 25px;
+    background:#1DB954;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* autocomplete */
+
+.autocomplete-list{
+    background:#1e1e1e;
+    width:250px;
+    margin:auto;
+    border-radius:5px;
+}
+
+.autocomplete-item{
+    padding:10px;
+    cursor:pointer;
+}
+
+.autocomplete-item:hover{
+    background:#333;
+}
+
+/* results grid */
+
+#results{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,200px);
+    gap:25px;
+    padding:40px;
+    justify-content:center;
+}
+
+.song-card{
+    background:#181818;
+    padding:15px;
+    border-radius:10px;
+}
+
+.song-card img{
+    width:100%;
+    border-radius:5px;
+}
+
+.song-card a{
+    color:#1DB954;
+    text-decoration:none;
+}
+
+#albums .song-card img {
+    width: 50%;
+    border-radius: 5px;
+}
