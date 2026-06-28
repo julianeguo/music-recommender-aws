@@ -3,7 +3,7 @@ A web app using AWS that recommends similar songs based on user input!
 Made by Juliane Guo and Audrey Paleczny for their CS310: Scalable Software Architectures class.
 
 ### To run the app:
-*Note: Unfortunately, the AWS account that hosts the app was recently terminated on 4/5/2026 because the free credits ran out. Still, check out the code in the repo, and the demo video here: [demo video]([URL](https://drive.google.com/file/d/1JNmD4ggC-RygxG21hmJc_W8CHnoN74ON/view?usp=sharing))*
+*Note: Unfortunately, the AWS account that hosts the app was recently terminated on 4/5/2026 because the free credits ran out. Still, check out the code in the repo, and the demo video here: [demo video](https://drive.google.com/file/d/1JNmD4ggC-RygxG21hmJc_W8CHnoN74ON/view?usp=sharing)*
 
 Simply open the "frontend.html" file in the browser and use the app. Because we are simulating our ML model with a DB (containing 16 songs and 10 recommendations for each song), users would only able to select the songs in the autocomplete search bar. Start typing something to see recommendations. Some sample songs to try out: vampire by Olivia Rodrigo, As It Was by Harry Styles, among many other songs in autocomplete.
 
