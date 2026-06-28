@@ -2,6 +2,10 @@
 A web app using AWS that recommends 10 similar songs based on a user-inputted song and looks them up on Spotify.
 Made by Juliane Guo and Audrey Paleczny for their CS310: Scalable Software Architectures class.
 
+<p align="center">
+  <img src="frontend_image.png" alt="App screenshot" width="600" ali>
+</p>
+
 ### To run the app:
 *Note: Unfortunately, the AWS account that hosts the app was recently terminated on 4/5/2026 because the free credits ran out. Still, check out the code in the repo, and the demo video here: [demo video](https://drive.google.com/file/d/1JNmD4ggC-RygxG21hmJc_W8CHnoN74ON/view?usp=sharing)*
 
