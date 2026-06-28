@@ -1,5 +1,5 @@
-# music-recommender-aws
-A web app using AWS that recommends similar songs based on user input!
+# AWS Music Recommender
+A web app using AWS that recommends 10 similar songs based on a user-inputted song and looks them up on Spotify.
 Made by Juliane Guo and Audrey Paleczny for their CS310: Scalable Software Architectures class.
 
 ### To run the app:
