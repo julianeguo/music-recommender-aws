@@ -42,9 +42,9 @@ To set up:
 
 ### Setting up the server:
 Right now, the relevant AWS databases are all running. However, if you would like to create your own, follow the below steps:
-	* Initialize a database with the same configuration as the previous assignments in this class
-	* Make a connection to the DB and run the SQL code provided
-	* Configure the DB with the lambda function as seen above
+* Initialize a database with the same configuration as the previous assignments in this class
+* Make a connection to the DB and run the SQL code provided
+* Configure the DB with the lambda function as seen above
 
 That should be it!
 
